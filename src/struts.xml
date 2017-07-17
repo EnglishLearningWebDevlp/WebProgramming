@@ -12,8 +12,8 @@
     <!-- 所有的action都应该放在对应的package下 -->
     <!--action的class属性不再是具体的类,而是spring配置文件配置的bean id-->
     <package name="addresslist" namespace="/addresslist" extends="struts-default">
-        <action name="add" class="addressAction" method="add">
-            <result name="success">/success.jsp</result>
+        <action name="list" class="addressAction" method="{1}">
+            <result name="list">/index.jsp</result>
         </action>
     </package>
 </struts>

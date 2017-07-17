@@ -1,9 +1,15 @@
 package action;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+import service.Address;
 import service.AddressImpl;
 import bean.Addresslist;
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by 2089769600 on 2017/7/16.
@@ -11,9 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class AddressAction extends ActionSupport{
     private String name;
     private String phone;
-    @Autowired
-    private AddressImpl address;
 
+
+    private AddressImpl address;
 
     public void setName(String name) {
         this.name = name;
@@ -40,7 +46,23 @@ public class AddressAction extends ActionSupport{
         address.add(al);
         return SUCCESS;
     }
+    private Map<String, Object> request;
+    public List<Addresslist> getAll(){
+        return address.getAll();
+    }
+    public String list() {
+        if(address==null){
+          System.out.println(1);
+           request.put("address",address.getAll());
+        }
+        return "list";
+    }
 
+
+
+    public void setRequest(Map<String, Object> map) {
+        this.request = map;
+    }
     public void setAddress(AddressImpl address) {
         this.address = address;
     }
