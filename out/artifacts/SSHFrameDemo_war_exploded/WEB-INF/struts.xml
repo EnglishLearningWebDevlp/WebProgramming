@@ -10,7 +10,7 @@
     <!-- 所有的action都应该放在对应的package下 -->
     <!--action的class属性不再是具体的类,而是spring配置文件配置的bean id-->
     <package name="address"  extends="struts-default">
-        <action name="show-*" class="addressAction" method="list">
+        <action name="show" class="addressAction" method="list">
             <result name="success">/list.jsp</result>
         </action>
     </package>

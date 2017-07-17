@@ -1,70 +1,62 @@
 package action;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.FileSystemXmlApplicationContext;
-import service.Address;
-import service.AddressImpl;
-import bean.Addresslist;
+import org.apache.struts2.interceptor.RequestAware;
+import service.AddressServiceImp;
+import bean.AddresslistEntity;
 import com.opensymphony.xwork2.ActionSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
 import java.util.Map;
 
+import static com.opensymphony.xwork2.Action.SUCCESS;
+
 /**
- * Created by 2089769600 on 2017/7/16.
+ * Created by 2089769600 on 2017/7/17.
  */
-public class AddressAction extends ActionSupport{
-    private String name;
-    private String phone;
+public class AddressAction implements RequestAware {
 
 
-    private AddressImpl address;
+    public void setAddress(AddressServiceImp address) {
+        this.address = address;
+    }
+
+    @Autowired
+    private AddressServiceImp address;
+    public String getName() {
+        return name;
+    }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getName() {
-
-        return name;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public String add()
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String addTo()
     {
-        Addresslist al = new Addresslist();
+        AddresslistEntity al = new AddresslistEntity();
         al.setName(getName());
         al.setPhone(getPhone());
         address.add(al);
         return SUCCESS;
     }
+
+
+    String name;
+    String phone;
     private Map<String, Object> request;
-    public List<Addresslist> getAll(){
-        return address.getAll();
-    }
-    public String list() {
-        if(address==null){
-          System.out.println(1);
-           request.put("address",address.getAll());
-        }
-        return "list";
-    }
-
-
-
+    @Override
     public void setRequest(Map<String, Object> map) {
-        this.request = map;
+        this.request=map;
     }
-    public void setAddress(AddressImpl address) {
-        this.address = address;
-    }
-
+   public String list(){
+        request.put("address",address.getALL());
+        return SUCCESS;
+   }
 }
