@@ -38,18 +38,34 @@ public class AddressAction implements RequestAware {
         this.phone = phone;
     }
 
-    public String addTo()
-    {
+    public String addTo() {
         AddresslistEntity al = new AddresslistEntity();
         al.setName(getName());
         al.setPhone(getPhone());
         address.add(al);
         return SUCCESS;
     }
-
+    public String ToDelete(){
+        address.delete(getId());
+        return SUCCESS;
+    }
+    public String ToUpdate(){
+        address.update(getId(),getName(),getPhone());
+        return SUCCESS;
+    }
 
     String name;
     String phone;
+    String id;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+
     private Map<String, Object> request;
     @Override
     public void setRequest(Map<String, Object> map) {
@@ -58,5 +74,9 @@ public class AddressAction implements RequestAware {
    public String list(){
         request.put("address",address.getALL());
         return SUCCESS;
+   }
+   public String queryByPhone(){
+       request.put("item",address.FindByPhone(getPhone()));
+       return SUCCESS;
    }
 }

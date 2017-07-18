@@ -17,6 +17,7 @@ public class Test {
         AddresslistEntity al = new AddresslistEntity();
         al.setName("kaka");
         al.setPhone("6666633");
-        System.out.println(ail.getALL().size());
+        //System.out.println( ail.FindByPhone("44").size());
+        ail.delete("1");
     }
 }

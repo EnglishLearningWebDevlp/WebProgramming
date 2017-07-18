@@ -12,5 +12,9 @@
   </head>
   <body>
   <a href="show-list">List all Employees</a>
+  <a href="insert.jsp">Insert An Employeees</a>
+  <a href="query.jsp">Query By Phone</a>
+  <a href="delete.jsp">Delete By Id</a>
+  <a href="update.jsp">Update By Id</a>
   </body>
 </html>

@@ -13,5 +13,17 @@
         <action name="show-*" class="addressAction" method="list">
             <result name="success">/list.jsp</result>
         </action>
+        <action name="insert" class="addressAction" method="addTo">
+            <result name="success">/success.jsp</result>
+        </action>
+        <action name="query" class="addressAction" method="queryByPhone">
+            <result name="success">/query.jsp</result>
+        </action>
+        <action name="delete" class="addressAction" method="ToDelete">
+            <result name="success">/success.jsp</result>
+        </action>
+        <action name="update" class="addressAction" method="ToUpdate">
+            <result name="success">/success.jsp</result>
+        </action>
     </package>
 </struts>
